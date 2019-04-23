@@ -7,6 +7,7 @@ public class FootSteps : MonoBehaviour
 {
     [Header("Settings")]
     public float stepInterval;
+    public float stepVolume;
     public AudioClip stepSound;
     public bool shake;
     public UnityEvent OnStep;
@@ -31,6 +32,7 @@ public class FootSteps : MonoBehaviour
         {
             if (m_Rigidbody2D.velocity != Vector2.zero)
             {
+                m_AudioSource.volume = stepVolume;
                 m_AudioSource.pitch = Random.Range(0.9f, 1.1f);
                 m_AudioSource.PlayOneShot(stepSound);
 

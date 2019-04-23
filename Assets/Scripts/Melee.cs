@@ -14,37 +14,43 @@ public class Melee : MonoBehaviour
 
     [Header("Debug")]
     [SerializeField] private bool meleeReady;
+    [SerializeField] private Animator m_Animator;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         meleeReady = true;
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        m_Animator = GetComponent<Animator>();
+    }
+
     void Update()
     {  
-        if(Input.GetKeyDown(meleeKey) && meleeReady)
+        if(Input.GetKey(meleeKey) && meleeReady)
         {
-            Debug.Log("Wiwin is Mr. Wins");
+            
+
             StartCoroutine("HitCooldown");
             Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(meleePos.position, circleSize, enemyMask);
             foreach (Collider2D enemy in enemiesHit)
             {
-                Debug.Log("We Hit an Enemy");
                 GameObject blood = Instantiate(bloodPrefab, enemy.transform.position, Quaternion.identity);
                 Destroy(blood, 4);
-                // Do something about it
             }
         }
     }
 
     IEnumerator HitCooldown()
     {
-        Debug.Log("pringles");
+        m_Animator.SetBool("IsPunching", true);
+        yield return new WaitForEndOfFrame();
+        m_Animator.SetBool("IsPunching", false);
         meleeReady = false;
         yield return new WaitForSeconds(cooldown);
         meleeReady = true;
+        
     }
 
     private void OnDrawGizmosSelected()

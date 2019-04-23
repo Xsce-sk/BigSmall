@@ -11,15 +11,14 @@ public class Aimer : MonoBehaviour
     private Vector3 m_Direction;
     private float m_Angle;
 
-    protected Transform m_Transform;
-
-    #region Public Functions
-
-    #endregion
+    [Header("Debug")]
+    [SerializeField] Transform m_Transform;
+    [SerializeField] SpriteRenderer m_GunSpriteRenderer;
 
     private void Start()
     {
         m_Transform = this.transform;
+        m_GunSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         m_MainCamera = Camera.main;
     }
@@ -28,15 +27,26 @@ public class Aimer : MonoBehaviour
     {
         if (lookAtMouse)
         {
-            //Debug.Log("sup");
             m_MousePos = m_MainCamera.ScreenToWorldPoint(Input.mousePosition);
-            //Debug.Log(m_MousePos);
 
             m_Direction = m_MousePos - transform.position;
-            //Debug.Log(m_Direction);
             m_Angle = Mathf.Atan2(m_Direction.y, m_Direction.x) * Mathf.Rad2Deg;
-            //Debug.Log(m_Angle);
             transform.rotation = Quaternion.AngleAxis(m_Angle, Vector3.forward);
         }
+
+        FlipSprite();
+    }
+
+    void FlipSprite()
+    {
+        if (m_Angle > 80 || m_Angle < -90)
+            m_GunSpriteRenderer.flipY = true;
+        else
+            m_GunSpriteRenderer.flipY = false;
+    }
+
+    public bool IsGunFacingLeft()
+    {
+        return m_GunSpriteRenderer.flipY;
     }
 }

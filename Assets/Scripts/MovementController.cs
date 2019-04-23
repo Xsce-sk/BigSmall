@@ -8,20 +8,20 @@ public class MovementController : MonoBehaviour
     public float moveSpeed;
     public string verticalAxis;
     public string horizontalAxis;
+    public bool turnWithGun;
 
     [Header("Debug")]
     [SerializeField] private Rigidbody2D m_RigidBody2D;
     [SerializeField] private Animator m_Animator;
-    [SerializeField] private Transform m_Transform;
-    [SerializeField] int m_SpriteDir;
+    [SerializeField] private SpriteRenderer m_SpriteRenderer;
+    [SerializeField] private Aimer m_Aimer;
 
     public void Awake()
     {
-        m_SpriteDir = 1;
-
         m_RigidBody2D = this.GetComponent<Rigidbody2D>();
         m_Animator = this.GetComponent<Animator>();
-        m_Transform = transform;
+        m_SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        m_Aimer = GetComponentInChildren<Aimer>();
     }
 
     public void Update()
@@ -36,17 +36,22 @@ public class MovementController : MonoBehaviour
 
     void FlipSprite()
     {
-        if (Input.GetAxis(horizontalAxis) < 0)
-            m_SpriteDir = -1;
-        else if (Input.GetAxis(horizontalAxis) > 0)
-            m_SpriteDir = 1;
-        m_Transform.localScale = new Vector3(m_SpriteDir, m_Transform.localScale.y, 1);
+        if (turnWithGun)
+        {
+            m_SpriteRenderer.flipX = m_Aimer.IsGunFacingLeft();
+        }
+        else
+        {
+            if (Input.GetAxis(horizontalAxis) > 0)
+                m_SpriteRenderer.flipX = false;
+            else if (Input.GetAxis(horizontalAxis) < 0)
+                m_SpriteRenderer.flipX = true;
+        }
+        
     }
 
     void UpdateAnimationController()
     {
-        m_Animator.SetFloat("HorizontalAxis", Input.GetAxis(horizontalAxis));
-        m_Animator.SetFloat("VerticalAxis", Input.GetAxis(verticalAxis));
         m_Animator.SetFloat("Velocity", m_RigidBody2D.velocity.x + m_RigidBody2D.velocity.y);
     }
 }
