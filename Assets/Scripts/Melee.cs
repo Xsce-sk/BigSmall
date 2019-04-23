@@ -10,6 +10,7 @@ public class Melee : MonoBehaviour
     public Transform meleePos;
     public float circleSize;
     public LayerMask enemyMask;
+    public GameObject bloodPrefab;
 
     [Header("Debug")]
     [SerializeField] private bool meleeReady;
@@ -31,6 +32,8 @@ public class Melee : MonoBehaviour
             foreach (Collider2D enemy in enemiesHit)
             {
                 Debug.Log("We Hit an Enemy");
+                GameObject blood = Instantiate(bloodPrefab, enemy.transform.position, Quaternion.identity);
+                Destroy(blood, 4);
                 // Do something about it
             }
         }
