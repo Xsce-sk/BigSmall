@@ -28,14 +28,14 @@ public class Aimer : MonoBehaviour
     {
         if (lookAtMouse)
         {
-            Debug.Log("sup");
+            //Debug.Log("sup");
             m_MousePos = m_MainCamera.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log(m_MousePos);
+            //Debug.Log(m_MousePos);
 
             m_Direction = m_MousePos - transform.position;
-            Debug.Log(m_Direction);
+            //Debug.Log(m_Direction);
             m_Angle = Mathf.Atan2(m_Direction.y, m_Direction.x) * Mathf.Rad2Deg;
-            Debug.Log(m_Angle);
+            //Debug.Log(m_Angle);
             transform.rotation = Quaternion.AngleAxis(m_Angle, Vector3.forward);
         }
     }
