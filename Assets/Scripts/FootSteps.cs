@@ -8,6 +8,7 @@ public class FootSteps : MonoBehaviour
     [Header("Settings")]
     public float stepInterval;
     public AudioClip stepSound;
+    public bool shake;
     public UnityEvent OnStep;
 
     [Header("Debug")]
@@ -32,7 +33,9 @@ public class FootSteps : MonoBehaviour
             {
                 m_AudioSource.pitch = Random.Range(0.9f, 1.1f);
                 m_AudioSource.PlayOneShot(stepSound);
-                m_CameraShake.Shake(0.1f);
+
+                if (shake)
+                    m_CameraShake.Shake(0.1f);
 
                 yield return new WaitForSeconds(stepInterval);
             }
