@@ -11,13 +11,22 @@ public class Shooter : MonoBehaviour
 
     [Header("Settings")]
     public GameObject bulletPrefab;
+    public float cooldown;
+    
     public KeyCode shootKey;
     public UnityEvent OnShoot;
     public Vector2 offset;
 
 
     [Header("Debug")]
+    [SerializeField] private bool m_CanShoot;
     [SerializeField] private Transform m_Transform;
+
+
+    private void Awake()
+    {
+        m_CanShoot = true;
+    }
 
     void Start()
     {
@@ -27,10 +36,18 @@ public class Shooter : MonoBehaviour
  
     void Update()
     {
-        if(Input.GetKeyDown(shootKey))
+        if(Input.GetKey(shootKey) && m_CanShoot)
         {
             Shoot();
+            StartCoroutine(StartCooldown());
         }
+    }
+
+    IEnumerator StartCooldown()
+    {
+        m_CanShoot = false;
+        yield return new WaitForSeconds(cooldown);
+        m_CanShoot = true;
     }
 
     public void Shoot()
