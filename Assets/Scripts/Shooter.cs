@@ -6,21 +6,24 @@ using System;
 
 public class Shooter : MonoBehaviour
 {
-    //[Serializable]
- 
-
     [Header("Settings")]
     public GameObject bulletPrefab;
-    public float cooldown;
-    
     public KeyCode shootKey;
-    public UnityEvent OnShoot;
+    public float cooldown;
     public Vector2 offset;
+    
 
+    [Header("Sounds")]
+    public List<AudioClip> shootSounds;
+    public float shootVolume;
+
+    [Header("Events")]
+    public UnityEvent OnShoot;
 
     [Header("Debug")]
     [SerializeField] private bool m_CanShoot;
-    [SerializeField] private Transform m_Transform;
+    [SerializeField] Transform m_Transform;
+    [SerializeField] AudioSource m_AudioSource;
 
 
     private void Awake()
@@ -31,6 +34,7 @@ public class Shooter : MonoBehaviour
     void Start()
     {
         m_Transform = this.transform;
+        m_AudioSource = this.GetComponent<AudioSource>();
     }
 
  
@@ -52,11 +56,19 @@ public class Shooter : MonoBehaviour
 
     public void Shoot()
     {
-        OnShoot.Invoke();
+        PlayShootSound();
+
         Vector3 spawnOffset = (m_Transform.right * offset.x) +  (m_Transform.up * offset.y);
-
         Vector3 spawnPos = m_Transform.position + spawnOffset;
-
         Instantiate(bulletPrefab, spawnPos, m_Transform.rotation);
+
+        OnShoot.Invoke();
+    }
+
+    void PlayShootSound()
+    {
+        m_AudioSource.volume = shootVolume;
+        m_AudioSource.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
+        m_AudioSource.PlayOneShot(shootSounds[UnityEngine.Random.Range(0, shootSounds.Count)]);
     }
 }
