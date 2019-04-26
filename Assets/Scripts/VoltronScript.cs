@@ -5,39 +5,57 @@ using UnityEngine;
 public class VoltronScript : MonoBehaviour
 {
     public Transform smallsTransform;
-    public Transform biggumsTransform;
     public Rigidbody2D smallsRB2D;
+    public Animator smallsAnimator;
+    public Transform biggumsTransform;
     public MovementController smallsMC;
     public float voltronDistance = 1f;
     public KeyCode voltronKey;
     public Transform biggumBack;
+    
+    //public float cooldown;
 
-    [SerializeField] private bool onBack;
+    [SerializeField] private bool onBack = false;
+    [SerializeField] private bool acceptInput = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (onBack && Input.GetKeyDown(voltronKey))
+        if (onBack && Input.GetKeyDown(voltronKey) && acceptInput)
         {
             Debug.Log("aaa");
-            smallsRB2D.simulated = true;
+            smallsTransform.parent = null;
+            Debug.Log("b");
             smallsMC.enabled = true;
+            Debug.Log("c");
             onBack = false;
+            StartCoroutine(HitCooldown());
         }
 
-        if (WithinVoltronDistance() && Input.GetKeyDown(voltronKey) && !onBack)
+        if (WithinVoltronDistance() && Input.GetKeyDown(voltronKey) && !onBack && acceptInput)
         {
+            smallsTransform.parent = biggumsTransform;
             smallsTransform.localPosition = biggumBack.localPosition;
-            smallsRB2D.simulated = false;
             smallsMC.enabled = false;
             onBack = true;
+            smallsRB2D.velocity = Vector2.zero;
+            smallsAnimator.SetFloat("Velocity", 0);
+            StartCoroutine(HitCooldown());
         }
+    }
+
+    IEnumerator HitCooldown()
+    {
+        acceptInput = !acceptInput;
+        yield return new WaitForSeconds(Time.deltaTime);
+        acceptInput = !acceptInput;
+
     }
 
     bool WithinVoltronDistance()
