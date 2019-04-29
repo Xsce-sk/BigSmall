@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     [Header("Settings")]
     public float bulletSpeed;
+    public int damage;
     
     [Header("Debug")]
     [SerializeField] Transform m_Transform;
@@ -18,4 +19,24 @@ public class Bullet : MonoBehaviour
         m_Rigidbody2D.AddForce(m_Transform.right * bulletSpeed, ForceMode2D.Impulse);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(!collision.CompareTag("Player"))
+        {
+            EnemyDamageable damageableComponent = collision.GetComponent<EnemyDamageable>();
+            
+            if (damageableComponent != null)
+            {
+                if(collision.CompareTag("ArmoredEnemy") && collision.GetComponent<ArmorEnemyManager>().HasArmor() == false)
+                {
+                    damageableComponent.TakeDamage(damage);
+                }
+                else if(collision.CompareTag("ArmoredEnemy") == false)
+                {
+                    damageableComponent.TakeDamage(damage);
+                }
+            }
+            Destroy(this);
+        }
+    }
 }

@@ -21,6 +21,7 @@ public class ArmorEnemyManager : MonoBehaviour
     [SerializeField] private Animator m_Animator;
     [SerializeField] private SpriteRenderer m_SpriteRenderer;
     [SerializeField] private float m_HitboxRange;
+    [SerializeField] private bool m_HasArmor;
 
     private void Awake()
     {
@@ -85,5 +86,16 @@ public class ArmorEnemyManager : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(meleePos.position, circleSize);
+    }
+
+    public void LoseArmor()
+    {
+        if(m_HasArmor)
+            m_HasArmor = false;
+    }
+
+    public bool HasArmor()
+    {
+        return m_HasArmor;
     }
 }

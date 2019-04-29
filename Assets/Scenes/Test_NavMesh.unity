@@ -744,7 +744,7 @@ SpriteRenderer:
   m_Size: {x: 1.1875, y: 0.703125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!82 &1356475372
@@ -1261,21 +1261,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7826161841686589911, guid: 7851690c92e6fe540874090677457371,
-        type: 3}
-      propertyPath: meleeAnimation
-      value: Biggums_Punch
-      objectReference: {fileID: 0}
-    - target: {fileID: 7826161841686589911, guid: 7851690c92e6fe540874090677457371,
-        type: 3}
-      propertyPath: damage
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7826161841686589908, guid: 7851690c92e6fe540874090677457371,
-        type: 3}
-      propertyPath: bloodParticles
-      value: 
-      objectReference: {fileID: 2791233378440073299, guid: 6d3d3c40d334e524babfd379cc48e49c,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7851690c92e6fe540874090677457371, type: 3}
