@@ -30,8 +30,6 @@ public class Melee : MonoBehaviour
     {  
         if(Input.GetKey(meleeKey) && meleeReady)
         {
-            
-
             StartCoroutine("HitCooldown");
             Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(meleePos.position, circleSize, enemyMask);
             foreach (Collider2D enemy in enemiesHit)

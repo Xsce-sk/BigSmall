@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArmorEnemyManager : MonoBehaviour
+public class SpikeEnemyManager : MonoBehaviour
 {
     [Header("Settings")]
+    public float moveSpeed;
+    public float attackRange;
+    public string attackAnimation;
     public GameObject Biggums;
-    public GameObject Smalls;
 
     [Header("Debug")]
     [SerializeField] private Transform m_Transform;
     [SerializeField] private Rigidbody2D m_Rigidbody2D;
+    [SerializeField] private Animator m_Animator;
     [SerializeField] private Transform m_Target;
     [SerializeField] private Transform m_TransformBiggums;
-    [SerializeField] private Transform m_TransformSmalls;
-    [SerializeField] float m_DistanceToBiggums;
-    [SerializeField] float m_DistanceToSmalls;
 
     // Start is called before the first frame update
     void Start()
@@ -24,17 +24,22 @@ public class ArmorEnemyManager : MonoBehaviour
         m_Rigidbody2D = this.GetComponent<Rigidbody2D>();
 
         m_TransformBiggums = Biggums.transform;
-        m_TransformSmalls = Smalls.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 directionToBiggums = m_Transform.position - m_TransformBiggums.position;
-        Vector3 directionToSmalls = m_Transform.position - m_TransformSmalls.position;
+        Vector3 directionToBiggums = m_TransformBiggums.position - m_Transform.position;
 
-
-
-        //https://docs.unity3d.com/Manual/DirectionDistanceFromOneObjectToAnother.html
+        if(directionToBiggums.magnitude <= attackRange)
+        {
+            m_Rigidbody2D.velocity = Vector2.zero;
+            m_Animator.Play("SpikeEnemy_Attack");
+            //do actual attack
+        }
+        else if(m_Animator.GetCurrentAnimatorStateInfo(0).IsName("SpikeEnemy_Attack"))
+        {
+            m_Rigidbody2D.velocity = directionToBiggums.normalized * moveSpeed;
+        }
     }
 }

@@ -387,7 +387,7 @@ GameObject:
   m_Layer: 0
   m_Name: Smalls
   m_TagString: Untagged
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -504,6 +504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stepInterval: 0.3
   stepVolume: 0.5
+  pitchInterval: {x: 0, y: 0}
   stepSound: {fileID: 8300000, guid: 8360de7aa7ad8454fafb4af3e24ec643, type: 3}
   shake: 0
   OnStep:
@@ -758,7 +759,7 @@ GameObject:
   m_Layer: 0
   m_Name: Biggums
   m_TagString: Untagged
-  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -859,6 +860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stepInterval: 0.5
   stepVolume: 0.8
+  pitchInterval: {x: 0, y: 0}
   stepSound: {fileID: 8300000, guid: e11f065081808ca4c94014a3ed1cfc39, type: 3}
   shake: 1
   OnStep:
@@ -1034,6 +1036,7 @@ GameObject:
   - component: {fileID: 1356475369}
   - component: {fileID: 1356475371}
   - component: {fileID: 1356475370}
+  - component: {fileID: 1356475372}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -1069,16 +1072,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 2155326845629385899, guid: 1d0d6e6d172406849bb30472e5bf4c21,
     type: 3}
-  cooldown: 0.2
   shootKey: 323
+  cooldown: 0.2
+  offset: {x: 1, y: 0}
+  shootSounds: []
+  shootVolume: 0
   OnShoot:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  offset: {x: 1, y: 0}
   m_CanShoot: 0
   m_Transform: {fileID: 0}
+  m_AudioSource: {fileID: 0}
 --- !u!212 &1356475371
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1127,6 +1133,102 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!82 &1356475372
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356475368}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1419737193
 GameObject:
   m_ObjectHideFlags: 0
@@ -1331,7 +1433,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6809052858669154280}
+  - component: {fileID: 4639607428003780444}
   - component: {fileID: 1065249014449582572}
+  - component: {fileID: 4639607428003780445}
+  - component: {fileID: 4639607428003780443}
+  - component: {fileID: 4639607428003780442}
+  - component: {fileID: 4639607428003780441}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -1339,6 +1446,104 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4639607428003780441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4639607428003780440}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad67412edb94fab4395769b36d12f950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0
+  Smalls: {fileID: 781138119}
+  m_Transform: {fileID: 0}
+  m_Rigidbody2D: {fileID: 0}
+  m_Target: {fileID: 0}
+  m_TransformSmalls: {fileID: 0}
+--- !u!114 &4639607428003780442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4639607428003780440}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8475d0d6c71800c48b07d254114a9e59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0
+  Biggums: {fileID: 1052055240}
+  Smalls: {fileID: 781138119}
+  m_Transform: {fileID: 0}
+  m_Rigidbody2D: {fileID: 0}
+  m_Target: {fileID: 0}
+  m_TransformBiggums: {fileID: 0}
+  m_TransformSmalls: {fileID: 0}
+  m_DistanceToBiggums: 0
+  m_DistanceToSmalls: 0
+--- !u!114 &4639607428003780443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4639607428003780440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06d0157898cd2f445b043f34d7fcbef9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  attackRange: 0
+  attackAnimation: 
+  Biggums: {fileID: 1052055240}
+  m_Transform: {fileID: 0}
+  m_Rigidbody2D: {fileID: 0}
+  m_Animator: {fileID: 0}
+  m_Target: {fileID: 0}
+  m_TransformBiggums: {fileID: 0}
+--- !u!50 &4639607428003780444
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4639607428003780440}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &4639607428003780445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4639607428003780440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e0616819570e147910494602e1111e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 0, y: 0, z: 0}
+  m_Transform: {fileID: 0}
+  m_CurrentPosition: {x: 0, y: 0, z: 0}
+  m_CheckLocation: {x: 0, y: 0, z: 0}
 --- !u!4 &6809052858669154280
 Transform:
   m_ObjectHideFlags: 0
