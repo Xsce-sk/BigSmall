@@ -6,6 +6,7 @@ public class SpikeEnemyManager : MonoBehaviour
 {
     [Header("Settings")]
     public float moveSpeed;
+    public int damage;
     public float attackRange;
     public string attackAnimation;
     public GameObject Biggums;
@@ -19,6 +20,12 @@ public class SpikeEnemyManager : MonoBehaviour
     [SerializeField] private Transform m_TransformBiggums;
     [SerializeField] private Animator m_Animator;
     [SerializeField] private SpriteRenderer m_SpriteRenderer;
+    [SerializeField] private float m_HitboxRange;
+
+    private void Awake()
+    {
+        m_HitboxRange = meleePos.localPosition.x;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -36,11 +43,16 @@ public class SpikeEnemyManager : MonoBehaviour
     {
         Vector3 directionToBiggums = m_TransformBiggums.position - m_Transform.position;
 
+        m_Animator.SetFloat("Velocity", m_Rigidbody2D.velocity.magnitude);
+
         if (directionToBiggums.magnitude <= attackRange)
         {
             m_Rigidbody2D.velocity = Vector2.zero;
-            m_Animator.Play(attackAnimation);
-            //do actual attack
+            if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) == false)
+            {
+                m_Animator.Play(attackAnimation);
+                //MeleeAttack();
+            }
         }
         else if(m_Animator.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) == false)
         {
@@ -51,23 +63,30 @@ public class SpikeEnemyManager : MonoBehaviour
 
     private void FlipSprite()
     {
-        if(m_Rigidbody2D.velocity.x > 0)
+        if (m_Rigidbody2D.velocity.x > 0)
         {
             m_SpriteRenderer.flipX = false;
+            meleePos.localPosition = new Vector3(m_HitboxRange, meleePos.localPosition.y, meleePos.localPosition.z);
         }
         else
         {
             m_SpriteRenderer.flipX = true;
+            meleePos.localPosition = new Vector3(-m_HitboxRange, meleePos.localPosition.y, meleePos.localPosition.z);
         }
     }
 
     private void MeleeAttack()
     {
-        StartCoroutine("HitCooldown");
         Collider2D[] playersHit = Physics2D.OverlapCircleAll(meleePos.position, circleSize, playerMask);
-        foreach (Collider2D enemy in playersHit)
+        foreach (Collider2D player in playersHit)
         {
-
+            player.GetComponent<PlayerDamageable>().TakeDamage(damage);
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(meleePos.position, circleSize);
     }
 }

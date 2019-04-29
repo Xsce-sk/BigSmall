@@ -6,10 +6,14 @@ public class ShieldEnemyManager : MonoBehaviour
 {
     [Header("Settings")]
     public float moveSpeed;
+    public int damage;
     public float attackRange;
     public string attackAnimation;
     public GameObject Biggums;
     public GameObject Smalls;
+    public Transform meleePos;
+    public float circleSize;
+    public LayerMask playerMask;
 
     [Header("Debug")]
     [SerializeField] private Transform m_Transform;
@@ -19,8 +23,14 @@ public class ShieldEnemyManager : MonoBehaviour
     [SerializeField] private SpriteRenderer m_SpriteRenderer;
     [SerializeField] private Transform m_TransformBiggums;
     [SerializeField] private Transform m_TransformSmalls;
-    [SerializeField] float m_DistanceToBiggums;
-    [SerializeField] float m_DistanceToSmalls;
+    [SerializeField] private float m_DistanceToBiggums;
+    [SerializeField] private float m_DistanceToSmalls;
+    [SerializeField] private float m_HitboxRange;
+
+    private void Awake()
+    {
+        m_HitboxRange = meleePos.localPosition.x;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +53,8 @@ public class ShieldEnemyManager : MonoBehaviour
         m_DistanceToBiggums = directionToBiggums.magnitude;
         m_DistanceToSmalls = directionToSmalls.magnitude;
 
+        m_Animator.SetFloat("Velocity", m_Rigidbody2D.velocity.magnitude);
+
         if (m_DistanceToBiggums < m_DistanceToSmalls)
         {
             MoveToBiggums(directionToBiggums);
@@ -61,7 +73,7 @@ public class ShieldEnemyManager : MonoBehaviour
         {
             m_Rigidbody2D.velocity = Vector2.zero;
             m_Animator.Play(attackAnimation);
-            //do actual attack
+            MeleeAttack();
         }
         else if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) == false)
         {
@@ -77,7 +89,7 @@ public class ShieldEnemyManager : MonoBehaviour
         {
             m_Rigidbody2D.velocity = Vector2.zero;
             m_Animator.Play(attackAnimation);
-            //do actual attack
+            MeleeAttack();
         }
         else if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) == false)
         {
@@ -91,10 +103,27 @@ public class ShieldEnemyManager : MonoBehaviour
         if (m_Rigidbody2D.velocity.x > 0)
         {
             m_SpriteRenderer.flipX = false;
+            meleePos.localPosition = new Vector3(m_HitboxRange, meleePos.localPosition.y, meleePos.localPosition.z);
         }
         else
         {
             m_SpriteRenderer.flipX = true;
+            meleePos.localPosition = new Vector3(-m_HitboxRange, meleePos.localPosition.y, meleePos.localPosition.z);
         }
+    }
+
+    private void MeleeAttack()
+    {
+        Collider2D[] playersHit = Physics2D.OverlapCircleAll(meleePos.position, circleSize, playerMask);
+        foreach (Collider2D player in playersHit)
+        {
+            player.GetComponent<PlayerDamageable>().TakeDamage(damage);
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(meleePos.position, circleSize);
     }
 }

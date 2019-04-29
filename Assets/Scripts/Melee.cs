@@ -11,6 +11,8 @@ public class Melee : MonoBehaviour
     public float circleSize;
     public LayerMask enemyMask;
     public GameObject bloodPrefab;
+    public string meleeAnimation;
+    public int damage;
 
     [Header("Debug")]
     [SerializeField] private bool meleeReady;
@@ -28,18 +30,13 @@ public class Melee : MonoBehaviour
 
     void Update()
     {  
-        if(Input.GetKey(meleeKey) && meleeReady)
+        if(Input.GetKeyDown(meleeKey) && m_Animator.GetCurrentAnimatorStateInfo(0).IsName(meleeAnimation) == false)
         {
-            StartCoroutine("HitCooldown");
-            Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(meleePos.position, circleSize, enemyMask);
-            foreach (Collider2D enemy in enemiesHit)
-            {
-                GameObject blood = Instantiate(bloodPrefab, enemy.transform.position, Quaternion.identity);
-                Destroy(blood, 4);
-            }
+            m_Animator.Play(meleeAnimation);
         }
     }
 
+    /*
     IEnumerator HitCooldown()
     {
         m_Animator.SetBool("IsPunching", true);
@@ -50,10 +47,20 @@ public class Melee : MonoBehaviour
         meleeReady = true;
         
     }
+    */
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(meleePos.position, circleSize);
+    }
+
+    public void MeleeAttack()
+    {
+        Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(meleePos.position, circleSize, enemyMask);
+        foreach (Collider2D enemy in enemiesHit)
+        {
+            enemy.GetComponent<EnemyDamageable>().TakeDamage(damage);
+        }
     }
 }

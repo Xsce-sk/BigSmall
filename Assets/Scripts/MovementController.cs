@@ -9,12 +9,15 @@ public class MovementController : MonoBehaviour
     public string verticalAxis;
     public string horizontalAxis;
     public bool turnWithGun;
+    public Transform meleePos;
 
     [Header("Debug")]
     [SerializeField] private Rigidbody2D m_RigidBody2D;
     [SerializeField] private Animator m_Animator;
     [SerializeField] private SpriteRenderer m_SpriteRenderer;
     [SerializeField] private Aimer m_Aimer;
+    [SerializeField] private float m_HitboxRange;
+
 
     public void Awake()
     {
@@ -22,6 +25,8 @@ public class MovementController : MonoBehaviour
         m_Animator = this.GetComponent<Animator>();
         m_SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         m_Aimer = GetComponentInChildren<Aimer>();
+        if(meleePos != null)
+            m_HitboxRange = meleePos.localPosition.x;
     }
 
     public void Update()
@@ -43,9 +48,15 @@ public class MovementController : MonoBehaviour
         else
         {
             if (Input.GetAxis(horizontalAxis) > 0)
+            {
                 m_SpriteRenderer.flipX = false;
+                meleePos.localPosition = new Vector3(m_HitboxRange, meleePos.localPosition.y, meleePos.localPosition.z);
+            }
             else if (Input.GetAxis(horizontalAxis) < 0)
+            {
                 m_SpriteRenderer.flipX = true;
+                meleePos.localPosition = new Vector3(-m_HitboxRange, meleePos.localPosition.y, meleePos.localPosition.z);
+            }
         }
         
     }
