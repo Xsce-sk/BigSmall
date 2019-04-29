@@ -503,7 +503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stepInterval: 0.3
-  stepVolume: 0.5
+  stepVolume: 0.1
   pitchInterval: {x: 0.9, y: 1.1}
   stepSound: {fileID: 8300000, guid: 8360de7aa7ad8454fafb4af3e24ec643, type: 3}
   shake: 0
@@ -860,7 +860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stepInterval: 0.5
   stepVolume: 0.8
-  pitchInterval: {x: 0.1, y: 0.2}
+  pitchInterval: {x: 0.9, y: 1.1}
   stepSound: {fileID: 8300000, guid: e11f065081808ca4c94014a3ed1cfc39, type: 3}
   shake: 1
   OnStep:
