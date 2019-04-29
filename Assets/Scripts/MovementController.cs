@@ -52,6 +52,6 @@ public class MovementController : MonoBehaviour
 
     void UpdateAnimationController()
     {
-        m_Animator.SetFloat("Velocity", m_RigidBody2D.velocity.x + m_RigidBody2D.velocity.y);
+        m_Animator.SetFloat("Velocity", m_RigidBody2D.velocity.magnitude);
     }
 }
