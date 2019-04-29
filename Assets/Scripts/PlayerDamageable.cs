@@ -18,12 +18,6 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         m_Transform = this.transform;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Debug.Log(health);
-    }
-
     public void TakeDamage(int damage)
     {
         health -= damage;

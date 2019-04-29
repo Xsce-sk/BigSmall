@@ -17,11 +17,11 @@ GameObject:
   - component: {fileID: 99586533}
   m_Layer: 9
   m_Name: ShieldEnemy
-  m_TagString: Untagged
+  m_TagString: ShieldEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1927792907697731036
 Transform:
   m_ObjectHideFlags: 0
@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1927792907697731028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6, y: 2.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1927792909327246863}
@@ -138,7 +138,7 @@ MonoBehaviour:
   attackAnimation: ShieldEnemy_Attack
   Biggums: {fileID: 0}
   Smalls: {fileID: 0}
-  meleePos: {fileID: 0}
+  meleePos: {fileID: 1927792908440634169}
   circleSize: 0.25
   playerMask:
     serializedVersion: 2
