@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 414012643}
   - component: {fileID: 414012644}
   m_Layer: 9
-  m_Name: GameObject
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -310,7 +310,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 96f32895806a2ae428c01b435e81b885, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 19bd01fa3d667354ab7d929d3a7b7788, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1439,8 +1439,9 @@ GameObject:
   - component: {fileID: 4639607428003780443}
   - component: {fileID: 4639607428003780442}
   - component: {fileID: 4639607428003780441}
+  - component: {fileID: 4639607428003780446}
   m_Layer: 9
-  m_Name: Enemy
+  m_Name: SpikeEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1544,6 +1545,25 @@ MonoBehaviour:
   m_Transform: {fileID: 0}
   m_CurrentPosition: {x: 0, y: 0, z: 0}
   m_CheckLocation: {x: 0, y: 0, z: 0}
+--- !u!95 &4639607428003780446
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4639607428003780440}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2bba2aa3ee988d245aaac4456643c410, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &6809052858669154280
 Transform:
   m_ObjectHideFlags: 0
