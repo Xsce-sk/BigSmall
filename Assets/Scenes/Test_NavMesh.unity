@@ -252,7 +252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 667233376}
   - component: {fileID: 667233377}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WeaponManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,7 +305,9 @@ GameObject:
   - component: {fileID: 781138125}
   - component: {fileID: 781138120}
   - component: {fileID: 781138127}
-  m_Layer: 0
+  - component: {fileID: 781138128}
+  - component: {fileID: 781138129}
+  m_Layer: 10
   m_Name: Smalls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,6 +555,48 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &781138128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781138119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 005201aa683c0bf40ac15601e3e7dd3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealthBar: {fileID: 0}
+  bloodParticles: {fileID: 2791233378440073299, guid: 6d3d3c40d334e524babfd379cc48e49c,
+    type: 3}
+  m_Transform: {fileID: 0}
+--- !u!61 &781138129
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781138119}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.30465508}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.6093102}
+  m_EdgeRadius: 0
 --- !u!1 &898012330
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,7 +651,7 @@ GameObject:
   - component: {fileID: 1356475371}
   - component: {fileID: 1356475370}
   - component: {fileID: 1356475372}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -839,7 +883,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1989863805}
   - component: {fileID: 1989863804}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1221,6 +1265,11 @@ PrefabInstance:
         type: 3}
       propertyPath: meleeAnimation
       value: Biggums_Punch
+      objectReference: {fileID: 0}
+    - target: {fileID: 7826161841686589911, guid: 7851690c92e6fe540874090677457371,
+        type: 3}
+      propertyPath: damage
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7826161841686589908, guid: 7851690c92e6fe540874090677457371,
         type: 3}

@@ -7,7 +7,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     [Header("Settings")]
     public GameObject HealthBar;
     public GameObject bloodParticles;
-    public int health;
+    [SerializeField] public static int health = 10;
 
     [Header("Debug")]
     [SerializeField] Transform m_Transform;
@@ -21,7 +21,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(health);
     }
 
     public void TakeDamage(int damage)
