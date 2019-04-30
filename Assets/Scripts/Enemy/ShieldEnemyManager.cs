@@ -9,6 +9,7 @@ public class ShieldEnemyManager : MonoBehaviour
     public int damage;
     public float attackRange;
     public string attackAnimation;
+    public string hitAnimation;
     public GameObject Biggums;
     public GameObject Smalls;
     public Transform meleePos;
@@ -77,34 +78,45 @@ public class ShieldEnemyManager : MonoBehaviour
 
     private void MoveToBiggums(Vector3 directionToBiggums)
     {
-
-        m_Rigidbody2D.velocity = directionToBiggums.normalized * moveSpeed;
-        if (m_DistanceToBiggums <= attackRange)
-        {
-            m_Rigidbody2D.velocity = Vector2.zero;
-            m_Animator.Play(attackAnimation);
-            MeleeAttack();
-        }
-        else if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) == false)
+        if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(hitAnimation) == false)
         {
             m_Rigidbody2D.velocity = directionToBiggums.normalized * moveSpeed;
-            FlipSprite();
+            if (m_DistanceToBiggums <= attackRange)
+            {
+                m_Rigidbody2D.velocity = Vector2.zero;
+                m_Animator.Play(attackAnimation);
+            }
+            else if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) == false)
+            {
+                m_Rigidbody2D.velocity = directionToBiggums.normalized * moveSpeed;
+                FlipSprite();
+            }
+        }
+        else
+        {
+            m_Rigidbody2D.velocity = Vector2.zero;
         }
     }
 
     private void MoveToSmalls(Vector3 directionToSmalls)
     {
-        m_Rigidbody2D.velocity = directionToSmalls.normalized * moveSpeed;
-        if (m_DistanceToSmalls <= attackRange)
-        {
-            m_Rigidbody2D.velocity = Vector2.zero;
-            m_Animator.Play(attackAnimation);
-            MeleeAttack();
-        }
-        else if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) == false)
+        if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(hitAnimation) == false)
         {
             m_Rigidbody2D.velocity = directionToSmalls.normalized * moveSpeed;
-            FlipSprite();
+            if (m_DistanceToSmalls <= attackRange)
+            {
+                m_Rigidbody2D.velocity = Vector2.zero;
+                m_Animator.Play(attackAnimation);
+            }
+            else if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) == false)
+            {
+                m_Rigidbody2D.velocity = directionToSmalls.normalized * moveSpeed;
+                FlipSprite();
+            }
+        }
+        else
+        {
+            m_Rigidbody2D.velocity = Vector2.zero;
         }
     }
 

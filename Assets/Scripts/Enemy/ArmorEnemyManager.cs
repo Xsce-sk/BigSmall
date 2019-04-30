@@ -9,6 +9,8 @@ public class ArmorEnemyManager : MonoBehaviour
     public int damage;
     public float attackRange;
     public string attackAnimation;
+    public string damagedAttackAnimation;
+    public string hitAnimation;
     public GameObject Smalls;
     public Transform meleePos;
     public float circleSize;
@@ -50,17 +52,34 @@ public class ArmorEnemyManager : MonoBehaviour
 
         if (directionToSmalls.magnitude <= followRange)
         {
-            if (directionToSmalls.magnitude <= attackRange)
+            if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(hitAnimation) == false)
+            {
+                if (directionToSmalls.magnitude <= attackRange)
+                {
+                    m_Rigidbody2D.velocity = Vector2.zero;
+                    if (m_HasArmor)
+                    {
+                        m_Animator.Play(attackAnimation);
+                    }
+                    else
+                    {
+                        m_Animator.Play(damagedAttackAnimation);
+                    }
+                }
+                else if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) == false)
+                {
+                    m_Rigidbody2D.velocity = directionToSmalls.normalized * moveSpeed;
+                    FlipSprite();
+                }
+            }
+            else
             {
                 m_Rigidbody2D.velocity = Vector2.zero;
-                m_Animator.Play(attackAnimation);
-                MeleeAttack();
             }
-            else if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) == false)
-            {
-                m_Rigidbody2D.velocity = directionToSmalls.normalized * moveSpeed;
-                FlipSprite();
-            }
+        }
+        else
+        {
+            m_Rigidbody2D.velocity = Vector2.zero;
         }
     }
 

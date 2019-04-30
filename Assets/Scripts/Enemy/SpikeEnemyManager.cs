@@ -9,6 +9,7 @@ public class SpikeEnemyManager : MonoBehaviour
     public int damage;
     public float attackRange;
     public string attackAnimation;
+    public string hitAnimation;
     public GameObject Biggums;
     public Transform meleePos;
     public float circleSize;
@@ -48,19 +49,26 @@ public class SpikeEnemyManager : MonoBehaviour
 
         if (directionToBiggums.magnitude <= followRange)
         {
-            if (directionToBiggums.magnitude <= attackRange)
+            if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(hitAnimation) == false)
             {
-                m_Rigidbody2D.velocity = Vector2.zero;
-                if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) == false)
+                if (directionToBiggums.magnitude <= attackRange)
                 {
-                    m_Animator.Play(attackAnimation);
-                    //MeleeAttack();
+
+                    m_Rigidbody2D.velocity = Vector2.zero;
+                    if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) == false)
+                    {
+                        m_Animator.Play(attackAnimation);
+                    }
+                }
+                else if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) == false)
+                {
+                    m_Rigidbody2D.velocity = directionToBiggums.normalized * moveSpeed;
+                    FlipSprite();
                 }
             }
-            else if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) == false)
+            else
             {
-                m_Rigidbody2D.velocity = directionToBiggums.normalized * moveSpeed;
-                FlipSprite();
+                m_Rigidbody2D.velocity = Vector2.zero;
             }
         }
     }
