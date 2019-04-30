@@ -592,7 +592,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9fca7edf33d46bd4d9d43cd9d6051a67, type: 3}
   - {fileID: 8300000, guid: 8153a10ffd6af314e817687f7ed2a77b, type: 3}
   - {fileID: 8300000, guid: 8803c7940fe15674095947ab53524cb8, type: 3}
-  shootVolume: 0.2
+  shootVolume: 0.4
   OnShoot:
     m_PersistentCalls:
       m_Calls: []
