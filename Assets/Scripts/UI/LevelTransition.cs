@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelTransition : MonoBehaviour
 {
+    public bool endScreen = false;
+
     [Header("Debug")]
     [SerializeField] Transform m_Transform;
 
@@ -12,7 +14,8 @@ public class LevelTransition : MonoBehaviour
     {
         m_Transform = transform;
 
-        StartCoroutine(TransitionAnimation());
+        if(!endScreen)
+            StartCoroutine(TransitionAnimation());
     }
 
     public void MoveToNextScene()
