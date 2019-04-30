@@ -31,6 +31,7 @@ public class ArmorEnemyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_HasArmor = true;
         m_Transform = this.transform;
         m_Rigidbody2D = this.GetComponent<Rigidbody2D>();
         m_Animator = this.GetComponent<Animator>();
