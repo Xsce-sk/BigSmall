@@ -13,6 +13,7 @@ public class SpikeEnemyManager : MonoBehaviour
     public Transform meleePos;
     public float circleSize;
     public LayerMask playerMask;
+    public float followRange;
 
     [Header("Debug")]
     [SerializeField] private Transform m_Transform;
@@ -45,19 +46,22 @@ public class SpikeEnemyManager : MonoBehaviour
 
         m_Animator.SetFloat("Velocity", m_Rigidbody2D.velocity.magnitude);
 
-        if (directionToBiggums.magnitude <= attackRange)
+        if (directionToBiggums.magnitude <= followRange)
         {
-            m_Rigidbody2D.velocity = Vector2.zero;
-            if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) == false)
+            if (directionToBiggums.magnitude <= attackRange)
             {
-                m_Animator.Play(attackAnimation);
-                //MeleeAttack();
+                m_Rigidbody2D.velocity = Vector2.zero;
+                if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) == false)
+                {
+                    m_Animator.Play(attackAnimation);
+                    //MeleeAttack();
+                }
             }
-        }
-        else if(m_Animator.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) == false)
-        {
-            m_Rigidbody2D.velocity = directionToBiggums.normalized * moveSpeed;
-            FlipSprite();
+            else if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) == false)
+            {
+                m_Rigidbody2D.velocity = directionToBiggums.normalized * moveSpeed;
+                FlipSprite();
+            }
         }
     }
 

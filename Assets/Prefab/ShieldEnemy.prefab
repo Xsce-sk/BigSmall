@@ -233,6 +233,9 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 0
+  shieldTransform: {fileID: 1150901786}
+  backCollider: {fileID: 1141966759}
+  followRange: 5
   m_Transform: {fileID: 0}
   m_Rigidbody2D: {fileID: 0}
   m_Animator: {fileID: 0}

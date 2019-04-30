@@ -14,6 +14,9 @@ public class ShieldEnemyManager : MonoBehaviour
     public Transform meleePos;
     public float circleSize;
     public LayerMask playerMask;
+    public Transform shieldTransform;
+    public BoxCollider2D backCollider;
+    public float followRange;
 
     [Header("Debug")]
     [SerializeField] private Transform m_Transform;
@@ -27,9 +30,14 @@ public class ShieldEnemyManager : MonoBehaviour
     [SerializeField] private float m_DistanceToSmalls;
     [SerializeField] private float m_HitboxRange;
 
+    private float shieldStartingX;
+    private float backStartingX;
+
     private void Awake()
     {
         m_HitboxRange = meleePos.localPosition.x;
+        shieldStartingX = shieldTransform.localPosition.x;
+        backStartingX = backCollider.offset.x;
     }
 
     // Start is called before the first frame update
@@ -57,11 +65,13 @@ public class ShieldEnemyManager : MonoBehaviour
 
         if (m_DistanceToBiggums < m_DistanceToSmalls)
         {
-            MoveToBiggums(directionToBiggums);
+            if(m_DistanceToBiggums <= followRange)
+                MoveToBiggums(directionToBiggums);
         }
         else
         {
-            MoveToSmalls(directionToSmalls);
+            if(m_DistanceToSmalls <= followRange)
+                MoveToSmalls(directionToSmalls);
         }
     }
 
@@ -104,11 +114,15 @@ public class ShieldEnemyManager : MonoBehaviour
         {
             m_SpriteRenderer.flipX = false;
             meleePos.localPosition = new Vector3(m_HitboxRange, meleePos.localPosition.y, meleePos.localPosition.z);
+            shieldTransform.localPosition = new Vector3(shieldStartingX, shieldTransform.localPosition.y, shieldTransform.localPosition.z);
+            backCollider.offset = new Vector2(backStartingX, backCollider.offset.y);
         }
         else
         {
             m_SpriteRenderer.flipX = true;
             meleePos.localPosition = new Vector3(-m_HitboxRange, meleePos.localPosition.y, meleePos.localPosition.z);
+            shieldTransform.localPosition = new Vector3(-shieldStartingX, shieldTransform.localPosition.y, shieldTransform.localPosition.z);
+            backCollider.offset = new Vector2(-backStartingX, backCollider.offset.y);
         }
     }
 

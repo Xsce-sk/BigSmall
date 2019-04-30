@@ -27,12 +27,15 @@ public class Bullet : MonoBehaviour
             
             if (damageableComponent != null)
             {
-                if(collision.CompareTag("ArmorEnemy") && collision.GetComponent<ArmorEnemyManager>().HasArmor() == false)
+                Debug.Log("a");
+                if (collision.CompareTag("ArmorEnemy") && collision.GetComponent<ArmorEnemyManager>().HasArmor() == false)
                 {
+                    Debug.Log("b");
                     damageableComponent.TakeDamage(damage);
                 }
                 else if(collision.CompareTag("ArmorEnemy") == false)
                 {
+                    Debug.Log("c");
                     damageableComponent.TakeDamage(damage);
                 }
             }

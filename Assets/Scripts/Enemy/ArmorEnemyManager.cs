@@ -13,6 +13,7 @@ public class ArmorEnemyManager : MonoBehaviour
     public Transform meleePos;
     public float circleSize;
     public LayerMask playerMask;
+    public float followRange;
 
     [Header("Debug")]
     [SerializeField] private Transform m_Transform;
@@ -47,16 +48,19 @@ public class ArmorEnemyManager : MonoBehaviour
 
         m_Animator.SetFloat("Velocity", m_Rigidbody2D.velocity.magnitude);
 
-        if (directionToSmalls.magnitude <= attackRange)
+        if (directionToSmalls.magnitude <= followRange)
         {
-            m_Rigidbody2D.velocity = Vector2.zero;
-            m_Animator.Play(attackAnimation);
-            MeleeAttack();
-        }
-        else if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) == false)
-        {
-            m_Rigidbody2D.velocity = directionToSmalls.normalized * moveSpeed;
-            FlipSprite();
+            if (directionToSmalls.magnitude <= attackRange)
+            {
+                m_Rigidbody2D.velocity = Vector2.zero;
+                m_Animator.Play(attackAnimation);
+                MeleeAttack();
+            }
+            else if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) == false)
+            {
+                m_Rigidbody2D.velocity = directionToSmalls.normalized * moveSpeed;
+                FlipSprite();
+            }
         }
     }
 
