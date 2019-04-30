@@ -232,7 +232,7 @@ MonoBehaviour:
   circleSize: 0.25
   playerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   shieldTransform: {fileID: 1150901786}
   backCollider: {fileID: 1141966759}
   followRange: 5

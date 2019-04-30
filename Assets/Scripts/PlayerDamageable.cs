@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerDamageable : MonoBehaviour, IDamageable
 {
     [Header("Settings")]
-    public GameObject HealthBar;
     public GameObject bloodParticles;
-    [SerializeField] public static int health = 10;
+    [SerializeField] public static int health;
+    public int startHealth = 10;
 
     [Header("Debug")]
     [SerializeField] Transform m_Transform;
@@ -16,6 +16,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     void Start()
     {
         m_Transform = this.transform;
+        health = startHealth;
     }
 
     public void TakeDamage(int damage)
@@ -23,5 +24,10 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         health -= damage;
         GameObject blood = Instantiate(bloodParticles, m_Transform.position, Quaternion.identity);
         Destroy(blood, 4);
+    }
+
+    void Update()
+    {
+     
     }
 }

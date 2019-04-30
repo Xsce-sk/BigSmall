@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 7826161841686589899}
   m_Layer: 10
   m_Name: Biggums
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,9 +137,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 005201aa683c0bf40ac15601e3e7dd3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthBar: {fileID: 0}
   bloodParticles: {fileID: 2791233378440073299, guid: 6d3d3c40d334e524babfd379cc48e49c,
     type: 3}
+  startHealth: 10
   m_Transform: {fileID: 0}
 --- !u!114 &7826161841686589911
 MonoBehaviour:
