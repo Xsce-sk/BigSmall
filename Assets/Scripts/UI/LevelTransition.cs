@@ -25,6 +25,7 @@ public class LevelTransition : MonoBehaviour
 
     public void MoveToScene(int index)
     {
+        Debug.Log("sad");
         StartCoroutine(ChangeScene(index));
     }
 
@@ -42,7 +43,7 @@ public class LevelTransition : MonoBehaviour
         {
             m_Transform.position = Vector3.Lerp(startPos, targetPos, t);
             yield return new WaitForEndOfFrame();
-            t += Time.deltaTime;
+            t += Time.deltaTime / 0.2f; 
         }
 
         SceneManager.LoadScene(index);
@@ -60,7 +61,7 @@ public class LevelTransition : MonoBehaviour
         {
             m_Transform.position = Vector3.Lerp(startPos, targetPos, t);
             yield return new WaitForEndOfFrame();
-            t += Time.deltaTime;
+            t += Time.deltaTime / 0.2f;
         }
 
         m_Transform.position = new Vector3(-42, 0, 0);
