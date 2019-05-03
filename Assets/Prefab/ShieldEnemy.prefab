@@ -226,6 +226,7 @@ MonoBehaviour:
   damage: 1
   attackRange: 2
   attackAnimation: ShieldEnemy_Attack
+  hitAnimation: ShieldEnemy_Hit
   Biggums: {fileID: 0}
   Smalls: {fileID: 0}
   meleePos: {fileID: 1927792908440634169}
@@ -235,7 +236,7 @@ MonoBehaviour:
     m_Bits: 1024
   shieldTransform: {fileID: 1150901786}
   backCollider: {fileID: 1141966759}
-  followRange: 5
+  followRange: 10
   m_Transform: {fileID: 0}
   m_Rigidbody2D: {fileID: 0}
   m_Animator: {fileID: 0}
@@ -260,8 +261,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bloodParticles: {fileID: 2791233378440073299, guid: 6d3d3c40d334e524babfd379cc48e49c,
     type: 3}
-  health: 10
+  health: 5
+  m_IsDead: 0
   m_Transform: {fileID: 0}
+  m_SpriteRenderer: {fileID: 0}
+  m_Animator: {fileID: 0}
 --- !u!61 &1141966759
 BoxCollider2D:
   m_ObjectHideFlags: 0

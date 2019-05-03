@@ -78,7 +78,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &239740558837944377
 Transform:
   m_ObjectHideFlags: 0
@@ -164,20 +164,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06d0157898cd2f445b043f34d7fcbef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 4
   damage: 1
   attackRange: 2
   attackAnimation: SpikeEnemy_Attack
+  hitAnimation: SpikeEnemy_Hit
   Biggums: {fileID: 0}
+  Smalls: {fileID: 0}
   meleePos: {fileID: 6714066303947802342}
   circleSize: 0.25
   playerMask:
     serializedVersion: 2
     m_Bits: 1024
-  followRange: 5
+  followRange: 20
   m_Transform: {fileID: 0}
   m_Rigidbody2D: {fileID: 0}
   m_TransformBiggums: {fileID: 0}
+  m_TransformSmalls: {fileID: 0}
   m_Animator: {fileID: 0}
   m_SpriteRenderer: {fileID: 0}
   m_HitboxRange: 0
@@ -195,8 +198,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bloodParticles: {fileID: 2791233378440073299, guid: 6d3d3c40d334e524babfd379cc48e49c,
     type: 3}
-  health: 10
+  health: 5
+  m_IsDead: 0
   m_Transform: {fileID: 0}
+  m_SpriteRenderer: {fileID: 0}
+  m_Animator: {fileID: 0}
 --- !u!61 &1956641267
 BoxCollider2D:
   m_ObjectHideFlags: 0

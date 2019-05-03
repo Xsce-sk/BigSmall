@@ -68,9 +68,12 @@ public class Melee : MonoBehaviour
                 enemy.GetComponent<ArmorEnemyManager>().LoseArmor();
                 enemy.GetComponent<EnemyDamageable>().TakeDamage(damage);
             }
-            else if(enemy.CompareTag("ShieldEnemy") && enemy.GetComponentInChildren<SpriteRenderer>().flipX == m_SpriteRenderer.flipX)
+            else if(enemy.CompareTag("ShieldEnemy"))
             {
-                enemy.GetComponent<EnemyDamageable>().TakeDamage(damage);
+                if (enemy.GetComponentInChildren<SpriteRenderer>().flipX == m_SpriteRenderer.flipX)
+                    enemy.GetComponent<EnemyDamageable>().TakeDamage(damage);
+                else
+                    enemy.GetComponent<Animator>().Play("ShieldEnemy_Hit");
             }
         }
     }

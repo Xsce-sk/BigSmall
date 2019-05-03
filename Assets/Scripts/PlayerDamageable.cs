@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using System;
 
 public class PlayerDamageable : MonoBehaviour, IDamageable
@@ -15,6 +16,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     [Header("Settings")]
     public GameObject bloodParticles;
     public Sprite deathSprite;
+    public GameObject deathPanel;
 
     [SerializeField] public static int health;
     public int startHealth = 10;
@@ -56,9 +58,11 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         m_MovementController.enabled = false;
         m_Animator.enabled = false;
         m_SpriteRenderer.sprite = deathSprite;
+
+        deathPanel.SetActive(true);
+
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
-
-
 
     IEnumerator HitAnim()
     {

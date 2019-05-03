@@ -75,6 +75,8 @@ public class VoltronScript : MonoBehaviour
 
         m_Animator.SetBool("IsJumping", false);
         m_IsAcceptingInput = true;
+
+        m_Rigidbody2D.isKinematic = true;
     }
 
     IEnumerator Disassemble()
@@ -93,6 +95,8 @@ public class VoltronScript : MonoBehaviour
         m_MovementController.enabled = true;
         m_Animator.SetBool("IsJumping", false);
         m_IsAcceptingInput = true;
+
+        m_Rigidbody2D.isKinematic = false;
     }
 
     bool WithinVoltronDistance()

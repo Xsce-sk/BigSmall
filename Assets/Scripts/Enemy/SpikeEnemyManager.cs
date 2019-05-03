@@ -11,6 +11,7 @@ public class SpikeEnemyManager : MonoBehaviour
     public string attackAnimation;
     public string hitAnimation;
     public GameObject Biggums;
+    public GameObject Smalls;
     public Transform meleePos;
     public float circleSize;
     public LayerMask playerMask;
@@ -20,6 +21,7 @@ public class SpikeEnemyManager : MonoBehaviour
     [SerializeField] private Transform m_Transform;
     [SerializeField] private Rigidbody2D m_Rigidbody2D;
     [SerializeField] private Transform m_TransformBiggums;
+    [SerializeField] private Transform m_TransformSmalls;
     [SerializeField] private Animator m_Animator;
     [SerializeField] private SpriteRenderer m_SpriteRenderer;
     [SerializeField] private float m_HitboxRange;
@@ -38,12 +40,14 @@ public class SpikeEnemyManager : MonoBehaviour
         m_SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         m_TransformBiggums = Biggums.transform;
+        m_TransformSmalls = Smalls.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector3 directionToBiggums = m_TransformBiggums.position - m_Transform.position;
+        Vector3 directionToSmalls = m_TransformSmalls.position - m_Transform.position;
 
         m_Animator.SetFloat("Velocity", m_Rigidbody2D.velocity.magnitude);
 
@@ -63,6 +67,30 @@ public class SpikeEnemyManager : MonoBehaviour
                 else if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) == false)
                 {
                     m_Rigidbody2D.velocity = directionToBiggums.normalized * moveSpeed;
+                    FlipSprite();
+                }
+            }
+            else
+            {
+                m_Rigidbody2D.velocity = Vector2.zero;
+            }
+        }
+        else if (directionToSmalls.magnitude <= followRange)
+        {
+            if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(hitAnimation) == false)
+            {
+                if (directionToSmalls.magnitude <= attackRange)
+                {
+
+                    m_Rigidbody2D.velocity = Vector2.zero;
+                    if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) == false)
+                    {
+                        m_Animator.Play(attackAnimation);
+                    }
+                }
+                else if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName(attackAnimation) == false)
+                {
+                    m_Rigidbody2D.velocity = directionToSmalls.normalized * moveSpeed;
                     FlipSprite();
                 }
             }

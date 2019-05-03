@@ -187,7 +187,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5739644423328862716
 Transform:
   m_ObjectHideFlags: 0
@@ -273,17 +273,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad67412edb94fab4395769b36d12f950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 4
   damage: 1
   attackRange: 2
   attackAnimation: ArmorEnemy_Attack
+  damagedAttackAnimation: ArmorEnemy_Damaged_Attack
+  hitAnimation: ArmorEnemy_Hit
   Smalls: {fileID: 0}
   meleePos: {fileID: 5739644421691840784}
   circleSize: 0.25
   playerMask:
     serializedVersion: 2
-    m_Bits: 0
-  followRange: 5
+    m_Bits: 1024
+  followRange: 50
   m_Transform: {fileID: 0}
   m_Rigidbody2D: {fileID: 0}
   m_TransformSmalls: {fileID: 0}
@@ -306,7 +308,10 @@ MonoBehaviour:
   bloodParticles: {fileID: 2791233378440073299, guid: 6d3d3c40d334e524babfd379cc48e49c,
     type: 3}
   health: 10
+  m_IsDead: 0
   m_Transform: {fileID: 0}
+  m_SpriteRenderer: {fileID: 0}
+  m_Animator: {fileID: 0}
 --- !u!61 &542299756
 BoxCollider2D:
   m_ObjectHideFlags: 0

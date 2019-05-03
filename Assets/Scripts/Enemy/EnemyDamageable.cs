@@ -78,6 +78,6 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
             t += Time.deltaTime;
         }
 
-        Destroy(this);
+        Destroy(this.gameObject);
     }
 }

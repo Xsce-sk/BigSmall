@@ -12,6 +12,30 @@ EditorBuildSettings:
     path: Assets/Scenes/Test_MainMenu.unity
     guid: 38f616bf88dccf14081e82b93f082eee
   - enabled: 1
+    path: Assets/Scenes/Level_Spike_One.unity
+    guid: 2f4cbbb15ec2f2e4692b7f80ffda7e09
+  - enabled: 1
+    path: Assets/Scenes/Level_Spike_Two.unity
+    guid: 2db79ffebd106ec4a9fee6ab535f5fa3
+  - enabled: 1
+    path: Assets/Scenes/Level_Shield_One.unity
+    guid: ddba405356b2e014abfbb75aee313b4b
+  - enabled: 1
+    path: Assets/Scenes/Level_Shield_Two.unity
+    guid: 8963a1e58b660d448bb8567bdb71bfc0
+  - enabled: 1
+    path: Assets/Scenes/Level_Armor_One.unity
+    guid: ae77c23728799b641a346d79ec19d08b
+  - enabled: 1
+    path: Assets/Scenes/Level_Armor_Two.unity
+    guid: ea6693ce307aec1409ff2706022f4a5b
+  - enabled: 1
+    path: Assets/Scenes/Level_Combined_One.unity
+    guid: 2ec46c52679230f43b703e7a8a320be4
+  - enabled: 1
+    path: Assets/Scenes/Level_Combined_Two.unity
+    guid: 0a3695d86bdf3634bad871e5f7223fe5
+  - enabled: 1
     path: Assets/Scenes/End Scene.unity
     guid: fa94c241c0565e04ab7b096d7d01f25e
   m_configObjects: {}

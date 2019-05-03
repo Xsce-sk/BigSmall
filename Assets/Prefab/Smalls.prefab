@@ -212,10 +212,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 005201aa683c0bf40ac15601e3e7dd3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6093770808807842692}
+        m_MethodName: PlayerDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: PlayerDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6093770809241396077}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: PlayerDamageable+OnDeathEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   bloodParticles: {fileID: 2791233378440073299, guid: 6d3d3c40d334e524babfd379cc48e49c,
     type: 3}
+  deathSprite: {fileID: 21300002, guid: 34ab1b2e35ac3f6438802f1f11cd631d, type: 3}
+  deathPanel: {fileID: 0}
   startHealth: 10
   m_Transform: {fileID: 0}
+  m_SpriteRenderer: {fileID: 0}
+  m_MovementController: {fileID: 0}
+  m_Animator: {fileID: 0}
 --- !u!114 &6093770808807842703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9332f625dabde3346a24440cb2084623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voltronDistance: 1
+  voltronDistance: 5
   voltronDuration: 0.2
   jumpoffDistance: 5
   voltronKey: 324
